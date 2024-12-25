@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Non-Farmer Entry Section</title>
+    <style>
+        body {
+            background: url('https://i.ibb.co/5KbG98t/image.jpg') no-repeat center center fixed;
+            background-size: cover;
+            background-position: center;
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            color: white;
+            padding: 15px 0;
+            text-align: center;
+        }
+
+        section {
+            color: white;
+            margin: 20px auto;
+            max-width: 600px;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background: rgba(0, 0, 0, 0.5);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        h1, h2 {
+            color: #f0a500;
+        }
+
+        form {
+            display: grid;
+            gap: 10px;
+        }
+
+        label {
+            font-weight: bold;
+        }
+
+        input[type="text"],
+        input[type="number"],
+        select {
+            padding: 8px;
+            width: 100%;
+            box-sizing: border-box;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        button {
+            background-color: #f0a500;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        footer {
+            color: white;
+            text-align: center;
+            padding: 0px 0;
+            position: bottom;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Non-Farmer Entry Section</h1>
+    </header>
+
+    <section id="entry-form">
+        <h2>Enter Details</h2>
+        <form action="non1.php" method="post">
+            <label for="platformname">Name of Platform:</label>
+            <select id="platformname" name="platformname" required>
+                <option value="">SELECT OPTION</option>
+                <option value="BINDU TRADERS(PVT)">BINDU TRADERS(PVT)</option>
+                <option value="GOVT-GeM">GOVT-GeM</option>
+                <option value="NCEDX(GOVT)">NCEDX(GOVT)</option>
+                <option value="RYTHU PATHIMILLU(GOVT)">RYTHU PATHIMILLU(GOVT)</option>
+                <option value="PRANAV(PVT)">PRANAV(PVT)</option>
+                <option value="BABBLU(INDIVIDUAL)">BABBLU(INDIVIDUAL)</option>
+            </select>
+            <label for="crop">Select Crop:</label>
+            <select id="crop" name="cropselection" required>
+                <option value="">SELECT OPTION</option>
+                <option value="rice">rice</option>
+                <option value="cotton">cotton</option>
+                <option value="wheat">wheat</option>
+                <option value="corn">corn</option>
+                <option value="bengal gram">bengal gram</option>
+                <option value="redgram">redgram</option>
+                <option value="Tomato">Tomato</option>
+                <!-- Add more crop options as needed -->
+            </select>
+            <label for="price">Price of Crop:</label>
+            <input type="number" id="price" name="price" required>
+            <button type="submit">Submit</button>
+        </form>
+    </section>
+
+ 
+</body>
+</html>

@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Empowering Farmers</title>
+         <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+        body {
+            background: url('https://i.ibb.co/5KbG98t/image.jpg') no-repeat center center fixed;
+            background-size: cover;
+            color: #fff;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        header {
+            background: rgba(0, 0, 0, 0.7);
+            padding: 15px 0;
+            text-align: center;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            margin: 0;
+            font-size: 2.5em;
+            color: #f0a500;
+        }
+        section {
+            background: rgba(0, 0, 0, 0.7);
+            padding: 20px;
+            margin: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        h2 {
+            color: #f0a500;
+            margin-bottom: 20px;
+        }
+        form {
+            margin-top: 20px;
+        }
+        label {
+            display: block;
+            margin: 10px 0 5px;
+            font-weight: 500;
+        }
+        input[type="text"],
+        input[type="email"],
+        input[type="number"],
+        select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+        button {
+            background-color: #f0a500;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            margin-top: 10px;
+            border-radius: 5px;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #d18d00;
+        }
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+        ul li {
+            background-color: #f9f9f9;
+            margin: 10px 0;
+            padding: 10px;
+            border: 1px solid #ddd;
+            color: #000;
+        }
+.home-button {
+        background-color: #f0a500;
+position:center;
+    }
+
+    .home-button:hover {
+        background-color: #007B9E;
+    }
+        .topright {
+            position: absolute; /* Position the button absolutely */
+            top: 70px; /* 20px from the top of the viewport */
+            right: 20px; /* 20px from the right of the viewport */
+            padding: 10px 20px; /* Padding for the button */
+            background-color: transparent; /* Background color */
+            color: #black; /* Text color */
+            border: 1px solid white; /* Remove border */
+            border-radius: 5px; /* Rounded corners */
+            cursor: pointer; /* Change cursor on hover */
+        }
+        footer {
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+            box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
+            margin-top: auto;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Empowering Farmers</h1>
+    </header>
+
+    <section id="register">
+        <h2>Register</h2>
+        <form id="register-form">
+            <label for="user-type">Select User Type:</label>
+            <select id="user-type" name="user-type">
+                <option value="farmer">Farmer</option>
+                <option value="non-farmer">Non-Farmer</option>
+            </select>
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required>
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+
+            <button type="button" onclick="sendOTP()">Send OTP</button>
+        </form>
+    </section>
+
+    <section id="otp-verification" style="display:none;">
+        <h2>OTP Verification</h2>
+        <form id="otp-form">
+            <label for="otp">Enter OTP:</label>
+            <input type="text" id="otp" name="otp" required>
+            <button type="submit">Verify OTP</button>
+        </form>
+    </section>
+
+    <section id="farmer-registration" style="display:none;">
+        <h2>Farmer Registration</h2>
+        <form id="farmer-registration-form" action="farmer.php" method="post">
+            <input type="hidden" name="user_type" value="farmer">
+
+            <label for="farmer-name">Name:</label>
+            <input type="text" id="farmer-name" name="name" required>
+
+            <label for="farmer-email">Email:</label>
+            <input type="email" id="farmer-email" name="email" required>
+
+            <button type="button" onclick="getLocation()">Get Location</button>
+
+            <label for="state">State:</label>
+            <input type="text" id="state" name="state" readonly>
+
+            <label for="district">District:</label>
+            <input type="text" id="district" name="district" readonly>
+
+            <label for="mandal">Mandal:</label>
+            <input type="text" id="mandal" name="mandal" readonly>
+
+            <label for="acres">Number of Acres:</label>
+            <input type="number" id="acres" name="acres" min="1" required>
+
+            <label for="crop-type">Type of Crop:</label>
+            <input type="text" id="crop-type" name="crop_type" required>
+
+            <label for="investment">Capital Invested:</label>
+            <input type="number" id="investment" name="investment" min="0" required>
+
+            <button type="submit">Register</button>
+        </form>
+    </section>
+
+    <section id="non-farmer-registration" style="display:none;">
+        <h2>Non-Farmer Registration</h2>
+        <form id="non-farmer-registration-form" action="nonfarmer.php" method="post">
+            <input type="hidden" name="user_type" value="non-farmer">
+
+            <label for="non-farmer-name">Name:</label>
+            <input type="text" id="non-farmer-name" name="name" required>
+
+            <label for="non-farmer-email">Email:</label>
+            <input type="email" id="non-farmer-email" name="email" required>
+
+            <button type="button" onclick="getLocation()">Get Location</button>
+
+            <label for="state">State:</label>
+            <input type="text" id="state" name="state" readonly>
+
+            <label for="district">District:</label>
+            <input type="text" id="district" name="district" readonly>
+
+            <label for="mandal">Mandal:</label>
+            <input type="text" id="mandal" name="mandal" readonly>
+
+            <button type="submit">Register</button>
+        </form>
+    </section>
+
+    <button type="button" class="topright" onclick="goToHomePage()">Back</button>
+
+    <script>
+
+          function sendOTP() {
+            // Generate random 4-digit OTP
+            const otp = Math.floor(1000 + Math.random() * 9000);
+
+            // Get form data
+            const formData = new FormData(document.getElementById('register-form'));
+            formData.append('otp', otp); // Append generated OTP to form data
+
+            // Send email using Fetch API
+            fetch('send_email.php', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    alert('OTP sent successfully! Check your email.');
+                    // Show OTP verification form
+                    document.getElementById('register').style.display = 'none';
+                    document.getElementById('otp-verification').style.display = 'block';
+                } else {
+                    alert('Failed to send OTP: ' + data.message);
+                }
+            })
+            .catch(error => {
+                alert('Error: ' + error);
+            });
+        }
+
+        document.getElementById('otp-form').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent the default form submission
+
+            const enteredOTP = document.getElementById('otp').value;
+
+            // Send entered OTP to server for verification
+            fetch('verify_otp.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ otp: enteredOTP })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    alert('OTP Verified Successfully!');
+                    // Display the appropriate registration form based on user type
+                    const userType = document.querySelector('input[name="usertype"]').value;
+                    const name = document.getElementById('name').value;
+                    const email = document.getElementById('email').value;
+
+                    if (userType === 'farmer') {
+                        document.getElementById('farmer-name').value = name;
+                        document.getElementById('farmer-email').value = email;
+                        document.getElementById('farmer-registration').style.display = 'block';
+                    } else {
+                        document.getElementById('non-farmer-name').value = name;
+                        document.getElementById('non-farmer-email').value = email;
+                        document.getElementById('non-farmer-registration').style.display = 'block';
+                    }
+
+                    document.getElementById('otp-verification').style.display = 'none';
+                } else {
+                    alert('Invalid OTP! Please try again.');
+                }
+            })
+            .catch(error => {
+                alert('Error: ' + error);
+            });
+        });
+        function getLocation() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(showPosition, showError);
+            } else {
+                alert("Geolocation is not supported by this browser.");
+            }
+        }
+
+        function showPosition(position) {
+            const lat = position.coords.latitude;
+            const lon = position.coords.longitude;
+
+            fetch(`https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=${lat}&lon=${lon}`)
+                .then(response => response.json())
+                .then(data => {
+                    console.log(data); // Check the full data returned
+                    const address = data.address;
+                    document.getElementById('state').value = address.state || '';
+                    document.getElementById('district').value = address.county || address.city || '';
+                    document.getElementById('mandal').value = address.village || address.town || ''; // Mandal might not always be available
+                })
+                .catch(error => {
+                    alert('Error retrieving location data: ' + error);
+                });
+        }
+
+        function showError(error) {
+            switch (error.code) {
+                case error.PERMISSION_DENIED:
+                    alert("User denied the request for Geolocation.");
+                    break;
+                case error.POSITION_UNAVAILABLE:
+                    alert("Location information is unavailable.");
+                    break;
+                case error.TIMEOUT:
+                    alert("The request to get user location timed out.");
+                    break;
+                case error.UNKNOWN_ERROR:
+                    alert("An unknown error occurred.");
+                    break;
+            }
+        }
+
+        function goToHomePage() {
+            window.location.href = 'login.php';
+        }
+    </script>
+</body>
+</html>

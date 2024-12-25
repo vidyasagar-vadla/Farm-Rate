@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Request Page</title>
+    <style>
+        body {
+            background: url('https://i.ibb.co/5KbG98t/image.jpg');
+            background-size: cover;
+            background-position: center;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 100px auto;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.7);
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+            text-align: center;
+        }
+
+        h1 {
+            color: #f0a500;
+            margin-bottom: 20px;
+        }
+
+        label {
+            font-size: 18px;
+            color: white;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        input[type="text"] {
+            width: 80%;
+            padding: 10px;
+            font-size: 16px;
+            border: 2px solid #f0a500;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+
+        button {
+            background-color: #f0a500;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        button:hover {
+            background-color: #007B9E;
+        }
+
+        .message {
+            margin-top: 20px;
+            font-size: 18px;
+            color: white;
+        }
+
+        .action {
+            margin-top: 20px;
+        }
+
+        .action button {
+            margin: 0 10px;
+            padding: 10px 20px;
+        }
+    </style>
+    <script>
+        function checkUsername() {
+            var username = document.getElementById("username").value;
+            var messageDiv = document.getElementById("message");
+            var actionDiv = document.getElementById("action");
+            
+            if (username === "Akhil" || username === "Siddharth") {
+                messageDiv.innerHTML = "You have received a request from Yashwanth.";
+                actionDiv.style.display = "block";
+            } else {
+                messageDiv.innerHTML = "No request received.";
+                actionDiv.style.display = "none";
+            }
+        }
+
+        function acceptRequest() {
+            var messageDiv = document.getElementById("message");
+            messageDiv.innerHTML = "Request Accepted.";
+            document.getElementById("action").style.display = "none";
+        }
+
+        function rejectRequest() {
+            var messageDiv = document.getElementById("message");
+            messageDiv.innerHTML = "Request Rejected.";
+            document.getElementById("action").style.display = "none";
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h1>Request Page</h1>
+        <label for="username">Enter Username:</label>
+        <input type="text" id="username" name="username">
+        <button onclick="checkUsername()">Check</button>
+        <div id="message" class="message"></div>
+        <div id="action" class="action" style="display:none;">
+            <button onclick="acceptRequest()">Accept</button>
+            <button onclick="rejectRequest()">Reject</button>
+        </div>
+    </div>
+</body>
+</html>
+
